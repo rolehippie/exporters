@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus exporter for Server
+After=network-online.target
+
+[Service]
+Restart=always
+EnvironmentFile=/etc/default/node-exporter
+ExecStart=/usr/bin/node-exporter --collector.textfile.directory={{ node_exporter_collector_directory }} $ARGS
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,54 @@
+# Standards: 1.2
+---
+# @var exporters_default_enabled:description: List of default enabled exporters
+exporters_default_enabled:
+  - node
+
+# @var exporters_extra_enabled:description: List of extra enabled exporters
+exporters_extra_enabled: []
+
+# @var exporters_extra_enabled:description: List of available exporter tasks
+exporters_available_tasks:
+  - node
+  - blackbox
+
+# @var node_exporter_version:description: Version of the release to install
+node_exporter_version: 1.0.1
+
+# @var node_exporter_download:description: URL to the archive of the release to install
+node_exporter_download: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+
+# @var node_exporter_collector_directory:description: Directory for static textfile collector
+node_exporter_collector_directory: /var/cache/node-exporter
+
+# @var node_exporter_args:description: List of arguments joined for the executable
+node_exporter_args: []
+
+# @var node_exporter_general_collectors:description: List of general collectors to create
+node_exporter_general_collectors: []
+
+# @var node_exporter_extra_collectors:description: List of extra collectors to create
+node_exporter_extra_collectors: []
+
+# @var blackbox_exporter_version:description: Version of the release to install
+blackbox_exporter_version: 0.17.0
+
+# @var blackbox_exporter_download:description: URL to the archive of the release to install
+blackbox_exporter_download: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64.tar.gz"
+
+# @var blackbox_exporter_args:description: List of arguments joined for the executable
+blackbox_exporter_args: []
+
+# @var blackbox_general_modules:description: General module configuration injected plain into the config
+blackbox_general_modules:
+  http_2xx:
+    prober: http
+  post_2xx:
+    prober: http
+    http:
+      method: POST
+
+# @var blackbox_extra_modules:description: Extra module configuration injected plain into the config
+blackbox_extra_modules:
+
+...

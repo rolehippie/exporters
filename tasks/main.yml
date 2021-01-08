@@ -1,0 +1,9 @@
+# Standards: 1.2
+---
+- name: Import enabled exporters
+  loop: "{{ exporters_default_enabled + exporters_extra_enabled }}"
+  when: item in exporters_available_tasks
+  include: "{{ item }}.yml"
+  tags: "{{ exporters_available_tasks + ['exporters'] }}"
+
+...

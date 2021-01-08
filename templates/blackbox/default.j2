@@ -1,0 +1,1 @@
+ARGS="--config.file=/etc/blackbox.yml{{ ' ' + blackbox_exporter_args | join(' ') if blackbox_exporter_args | default(False) else '' }}"

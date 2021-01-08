@@ -1,0 +1,217 @@
+# Standards: 1.2
+---
+- name: Check existing install (node)
+  register: node_exporter_version_check
+  failed_when: False
+  changed_when: False
+  check_mode: False
+  command: /usr/bin/node-exporter --version
+  tags:
+    - exporters
+    - node
+
+- name: Fact version change (node)
+  set_fact:
+    node_exporter_version_changed: "{{ node_exporter_version_check.rc != 0 or (node_exporter_version_check.stderr_lines is defined and node_exporter_version not in node_exporter_version_check.stderr_lines[0]) | bool }}"
+  tags:
+    - exporters
+    - node
+
+- name: Download release tarball (node)
+  when: node_exporter_version_changed
+  unarchive:
+    src: "{{ node_exporter_download }}"
+    dest: /usr/local/src
+    remote_src: True
+    owner: root
+    group: root
+  tags:
+    - exporters
+    - node
+
+- name: Create collector directory (node)
+  file:
+    path: "{{ node_exporter_collector_directory }}"
+    owner: root
+    group: root
+    mode: u=rwx,g=rw,o=rw
+    state: directory
+  tags:
+    - exporters
+    - node
+
+- name: Collector from url (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.url | default(False) and item.state | default("present") == "present"
+  get_url:
+    url: "{{ item.url }}"
+    dest: "/usr/bin/node-exporter-{{ item.name }}"
+    owner: root
+    group: root
+    mode: o=rwx,g=rx,o=rx
+  tags:
+    - exporters
+    - node
+
+- name: Collector from content (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.content | default(False) and item.state | default("present") == "present"
+  copy:
+    content: "{{ item.content }}"
+    dest: "/usr/bin/node-exporter-{{ item.name }}"
+    owner: root
+    group: root
+    mode: o=rwx,g=rx,o=rx
+  tags:
+    - exporters
+    - node
+
+- name: Collector from template (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.src | default(False) and item.state | default("present") == "present"
+  template:
+    src: "{{ item.src }}"
+    dest: "/usr/bin/node-exporter-{{ item.name }}"
+    owner: root
+    group: root
+    mode: o=rwx,g=rx,o=rx
+  tags:
+    - exporters
+    - node
+
+- name: Write collector timer (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "present"
+  template:
+    src: collector/timer.j2
+    dest: "/etc/systemd/system/node-exporter-{{ item.name }}.timer"
+  tags:
+    - exporters
+    - node
+
+- name: Write collector service (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "present"
+  template:
+    src: collector/service.j2
+    dest: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
+  tags:
+    - exporters
+    - node
+
+- name: Start collector timer (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  ignore_errors: "{{ False if item.state | default('present') else True }}"
+  systemd:
+    name: "node-exporter-{{ item.name }}.timer"
+    state: "{{ 'started' if item.state | default('present') else 'stopped' }}"
+    daemon_reload: True
+    masked: False
+    enabled: "{{ True if item.state | default('present') else False }}"
+  tags:
+    - exporters
+    - node
+
+- name: Remove collector timer (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "absent"
+  file:
+    path: "/etc/systemd/system/node-exporter-{{ item.name }}.timer"
+    state: absent
+  tags:
+    - exporters
+    - node
+
+- name: Remove collector service (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "absent"
+  file:
+    path: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
+    state: absent
+  tags:
+    - exporters
+    - node
+
+- name: Delete defined collectors (node)
+  loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "absent"
+  file:
+    path: "/usr/bin/node-exporter-{{ item.name }}"
+    state: absent
+  tags:
+    - exporters
+    - node
+
+- name: Copy exporter binary (node)
+  when: node_exporter_version_changed and not ansible_check_mode
+  notify:
+    - Restart node-exporter
+  copy:
+    src: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter"
+    dest: /usr/bin/node-exporter
+    remote_src: True
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  tags:
+    - exporters
+    - node
+
+- name: Write default config (node)
+  notify:
+    - Restart node-exporter
+  template:
+    src: node/default.j2
+    dest: /etc/default/node-exporter
+  tags:
+    - exporters
+    - node
+
+- name: Write service file (node)
+  notify:
+    - Restart node-exporter
+  template:
+    src: node/service.j2
+    dest: /etc/systemd/system/node-exporter.service
+  tags:
+    - exporters
+    - node
+
+- name: Start exporter service (node)
+  systemd:
+    name: node-exporter
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - exporters
+    - node
+
+- name: Remove install directory (node)
+  file:
+    path: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-amd64"
+    state: absent
+  tags:
+    - exporters
+    - node
+
+...

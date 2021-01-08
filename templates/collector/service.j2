@@ -1,0 +1,11 @@
+[Unit]
+Description=Collector: {{ item.name }}
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/environment
+
+ExecStart=/usr/bin/node-exporter-{{ item.name }}
+
+[Install]
+WantedBy=multi-user.target

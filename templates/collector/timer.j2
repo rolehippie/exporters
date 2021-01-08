@@ -1,0 +1,10 @@
+[Unit]
+Description=Collector: {{ item.name }}
+
+[Timer]
+OnUnitInactiveSec={{ item.interval }}
+OnBootSec={{ item.boot | default(item.interval) }}
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target
