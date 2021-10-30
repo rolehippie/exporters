@@ -93,6 +93,9 @@
   template:
     src: collector/timer.j2
     dest: "/etc/systemd/system/node-exporter-{{ item.name }}.timer"
+    owner: root
+    group: root
+    mode: u=rwx,g=r,o=r
   tags:
     - exporters
     - node
@@ -105,6 +108,9 @@
   template:
     src: collector/service.j2
     dest: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
+    owner: root
+    group: root
+    mode: u=rwx,g=r,o=r
   tags:
     - exporters
     - node
@@ -181,6 +187,9 @@
   template:
     src: node/default.j2
     dest: /etc/default/node-exporter
+    owner: root
+    group: root
+    mode: u=rwx,g=r,o=r
   tags:
     - exporters
     - node
@@ -191,6 +200,9 @@
   template:
     src: node/service.j2
     dest: /etc/systemd/system/node-exporter.service
+    owner: root
+    group: root
+    mode: u=rwx,g=r,o=r
   tags:
     - exporters
     - node

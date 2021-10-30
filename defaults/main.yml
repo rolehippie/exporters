@@ -13,10 +13,14 @@ exporters_available_tasks:
   - blackbox
 
 # @var node_exporter_version:description: Version of the release to install
+# renovate: datasource=github-releases depName=prometheus/node_exporter
 node_exporter_version: 1.0.1
 
+# @var node_exporter_arch:description: Architecture of the release to install
+node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+
 # @var node_exporter_download:description: URL to the archive of the release to install
-node_exporter_download: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+node_exporter_download: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
 
 # @var node_exporter_collector_directory:description: Directory for static textfile collector
 node_exporter_collector_directory: /var/cache/node-exporter
@@ -31,10 +35,14 @@ node_exporter_general_collectors: []
 node_exporter_extra_collectors: []
 
 # @var blackbox_exporter_version:description: Version of the release to install
+# renovate: datasource=github-releases depName=prometheus/blackbox_exporter
 blackbox_exporter_version: 0.17.0
 
+# @var blackbox_exporter_arch:description: Architecture of the release to install
+blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+
 # @var blackbox_exporter_download:description: URL to the archive of the release to install
-blackbox_exporter_download: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64.tar.gz"
+blackbox_exporter_download: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}.tar.gz"
 
 # @var blackbox_exporter_args:description: List of arguments joined for the executable
 blackbox_exporter_args: []

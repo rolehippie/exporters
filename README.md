@@ -13,6 +13,7 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 ## Table of content
 
 * [Default Variables](#default-variables)
+  * [blackbox_exporter_arch](#blackbox_exporter_arch)
   * [blackbox_exporter_args](#blackbox_exporter_args)
   * [blackbox_exporter_download](#blackbox_exporter_download)
   * [blackbox_exporter_version](#blackbox_exporter_version)
@@ -21,6 +22,7 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
   * [exporters_available_tasks](#exporters_available_tasks)
   * [exporters_default_enabled](#exporters_default_enabled)
   * [exporters_extra_enabled](#exporters_extra_enabled)
+  * [node_exporter_arch](#node_exporter_arch)
   * [node_exporter_args](#node_exporter_args)
   * [node_exporter_collector_directory](#node_exporter_collector_directory)
   * [node_exporter_download](#node_exporter_download)
@@ -34,6 +36,17 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 ---
 
 ## Default Variables
+
+### blackbox_exporter_arch
+
+Architecture of the release to install
+
+#### Default value
+
+```YAML
+blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'\
+  \ }}"
+```
 
 ### blackbox_exporter_args
 
@@ -53,7 +66,8 @@ URL to the archive of the release to install
 
 ```YAML
 blackbox_exporter_download: https://github.com/prometheus/blackbox_exporter/releases/download/v{{
-  blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64.tar.gz
+  blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{
+  blackbox_exporter_arch }}.tar.gz
 ```
 
 ### blackbox_exporter_version
@@ -123,6 +137,17 @@ List of available exporter tasks
 exporters_extra_enabled: []
 ```
 
+### node_exporter_arch
+
+Architecture of the release to install
+
+#### Default value
+
+```YAML
+node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'\
+  \ }}"
+```
+
 ### node_exporter_args
 
 List of arguments joined for the executable
@@ -151,7 +176,8 @@ URL to the archive of the release to install
 
 ```YAML
 node_exporter_download: https://github.com/prometheus/node_exporter/releases/download/v{{
-  node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz
+  node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch
+  }}.tar.gz
 ```
 
 ### node_exporter_extra_collectors
