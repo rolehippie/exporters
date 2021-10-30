@@ -171,7 +171,7 @@
   notify:
     - Restart node-exporter
   copy:
-    src: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-amd64/node_exporter"
+    src: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}/node_exporter"
     dest: /usr/bin/node-exporter
     remote_src: True
     owner: root
@@ -220,7 +220,7 @@
 
 - name: Remove install directory (node)
   file:
-    path: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-amd64"
+    path: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}"
     state: absent
   tags:
     - exporters

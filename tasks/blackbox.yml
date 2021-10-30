@@ -34,7 +34,7 @@
   notify:
     - Restart blackbox-exporter
   copy:
-    src: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64/blackbox_exporter"
+    src: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}/blackbox_exporter"
     dest: /usr/bin/blackbox-exporter
     remote_src: True
     owner: root
@@ -96,7 +96,7 @@
 
 - name: Remove install directory (blackbox)
   file:
-    path: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64"
+    path: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}"
     state: absent
   tags:
     - exporters
