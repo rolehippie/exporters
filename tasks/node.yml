@@ -12,7 +12,7 @@
 
 - name: Fact version change (node)
   set_fact:
-    node_exporter_version_changed: "{{ node_exporter_version_check.rc != 0 or (node_exporter_version_check.stderr_lines is defined and node_exporter_version not in node_exporter_version_check.stderr_lines[0]) | bool }}"
+    node_exporter_version_changed: "{{ node_exporter_version_check.rc != 0 or (node_exporter_version_check.stdout_lines is defined and node_exporter_version not in node_exporter_version_check.stdout_lines[0]) | bool }}"
   tags:
     - exporters
     - node
