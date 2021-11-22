@@ -5,7 +5,7 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  command: /usr/bin/node-exporter --version
+  shell: /usr/bin/node-exporter --version 2>&1
   tags:
     - exporters
     - node

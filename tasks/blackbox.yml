@@ -5,14 +5,14 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  command: /usr/bin/blackbox-exporter --version
+  shell: /usr/bin/blackbox-exporter --version 2>&1
   tags:
     - exporters
     - blackbox
 
 - name: Fact version change (blackbox)
   set_fact:
-    blackbox_exporter_version_changed: "{{ blackbox_exporter_version_check.rc != 0 or (blackbox_exporter_version_check.stderr_lines is defined and blackbox_exporter_version not in blackbox_exporter_version_check.stderr_lines[0]) | bool }}"
+    blackbox_exporter_version_changed: "{{ blackbox_exporter_version_check.rc != 0 or (blackbox_exporter_version_check.stdout_lines is defined and blackbox_exporter_version not in blackbox_exporter_version_check.stdout_lines[0]) | bool }}"
   tags:
     - exporters
     - blackbox
