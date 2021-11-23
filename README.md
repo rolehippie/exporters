@@ -207,7 +207,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-node_exporter_version: 1.2.2
+node_exporter_version: 1.3.0
 ```
 
 ## Dependencies
