@@ -20,6 +20,8 @@
 # None
 # @end
 galaxy_info:
+  role_name: exporters
+  namespace: rolehippie
   author: Thomas Boerger
   description: Ansible role to configure some Prometheus exporters
   license: Apache-2.0

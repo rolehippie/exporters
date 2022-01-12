@@ -5,7 +5,7 @@
   loop_control:
     loop_var: exporter
   when: exporter in exporters_available_tasks
-  include: "{{ exporter }}.yml"
+  include_tasks: "{{ exporter }}.yml"
   tags: "{{ exporters_available_tasks + ['exporters'] }}"
 
 ...
