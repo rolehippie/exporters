@@ -76,7 +76,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-blackbox_exporter_version: 0.21.1
+blackbox_exporter_version: 0.22.0
 ```
 
 ### blackbox_extra_modules
