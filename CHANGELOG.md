@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/rolehippie/exporters/compare/v1.0.0...v1.1.0) (2023-05-29)
+
+
+### Features
+
+* **deps:** update minor versions ([db38d95](https://github.com/rolehippie/exporters/commit/db38d95189137289799f343832a1e4ab2c5c5bf2))
+
 ## 1.0.0 (2023-01-05)
 
 
