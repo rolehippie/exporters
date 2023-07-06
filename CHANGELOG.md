@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/rolehippie/exporters/compare/v1.1.0...v1.2.0) (2023-07-06)
+
+
+### Features
+
+* set proper permissions for services and defaults ([823ace5](https://github.com/rolehippie/exporters/commit/823ace504ced36d753c575920b88a19000878a6c))
+
 ## [1.1.0](https://github.com/rolehippie/exporters/compare/v1.0.0...v1.1.0) (2023-05-29)
 
 
