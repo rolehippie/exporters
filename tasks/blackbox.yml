@@ -44,19 +44,6 @@
     - exporters
     - blackbox
 
-- name: Write default config (blackbox)
-  notify:
-    - Restart blackbox-exporter
-  template:
-    src: blackbox/default.j2
-    dest: /etc/default/blackbox-exporter
-    owner: root
-    group: root
-    mode: u=rwx,g=r,o=r
-  tags:
-    - exporters
-    - blackbox
-
 - name: Write general config (blackbox)
   notify:
     - Restart blackbox-exporter
@@ -65,7 +52,20 @@
     dest: /etc/blackbox.yml
     owner: root
     group: root
-    mode: u=rwx,g=r,o=r
+    mode: u=rw,g=r,o=r
+  tags:
+    - exporters
+    - blackbox
+
+- name: Write default config (blackbox)
+  notify:
+    - Restart blackbox-exporter
+  template:
+    src: blackbox/default.j2
+    dest: /etc/default/blackbox-exporter
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - exporters
     - blackbox
@@ -78,7 +78,7 @@
     dest: /etc/systemd/system/blackbox-exporter.service
     owner: root
     group: root
-    mode: u=rwx,g=r,o=r
+    mode: u=rx,g=r,o=r
   tags:
     - exporters
     - blackbox

@@ -34,7 +34,7 @@
     path: "{{ node_exporter_collector_directory }}"
     owner: root
     group: root
-    mode: u=rwx,g=rw,o=rw
+    mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - exporters
@@ -95,7 +95,7 @@
     dest: "/etc/systemd/system/node-exporter-{{ item.name }}.timer"
     owner: root
     group: root
-    mode: u=rwx,g=r,o=r
+    mode: u=rw,g=r,o=r
   tags:
     - exporters
     - node
@@ -110,7 +110,7 @@
     dest: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
     owner: root
     group: root
-    mode: u=rwx,g=r,o=r
+    mode: u=rw,g=r,o=r
   tags:
     - exporters
     - node
@@ -189,7 +189,7 @@
     dest: /etc/default/node-exporter
     owner: root
     group: root
-    mode: u=rwx,g=r,o=r
+    mode: u=rw,g=r,o=r
   tags:
     - exporters
     - node
@@ -202,7 +202,7 @@
     dest: /etc/systemd/system/node-exporter.service
     owner: root
     group: root
-    mode: u=rwx,g=r,o=r
+    mode: u=rw,g=r,o=r
   tags:
     - exporters
     - node
