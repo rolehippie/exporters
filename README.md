@@ -1,6 +1,6 @@
 # exporters
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&amp;logoColor=white)](https://github.com/rolehippie/exporters)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/exporters)
 [![General Workflow](https://github.com/rolehippie/exporters/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/exporters/actions/workflows/general.yml)
 [![Readme Workflow](https://github.com/rolehippie/exporters/actions/workflows/docs.yml/badge.svg)](https://github.com/rolehippie/exporters/actions/workflows/docs.yml)
 [![Galaxy Workflow](https://github.com/rolehippie/exporters/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/exporters/actions/workflows/galaxy.yml)
@@ -44,7 +44,6 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - Minimum Ansible version: `2.10`
 
-
 ## Default Variables
 
 ### blackbox_exporter_arch
@@ -54,8 +53,8 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'\
-  \ }}"
+blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'
+  }}"
 ```
 
 ### blackbox_exporter_args
@@ -154,8 +153,8 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'\
-  \ }}"
+node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'
+  }}"
 ```
 
 ### node_exporter_args
