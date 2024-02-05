@@ -1,4 +1,3 @@
-# Standards: 1.2
 ---
 - name: Import enabled exporters
   loop: "{{ exporters_default_enabled + exporters_extra_enabled }}"
