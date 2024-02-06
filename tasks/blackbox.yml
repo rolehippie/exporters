@@ -1,17 +1,16 @@
-# Standards: 1.2
 ---
 - name: Check existing install (blackbox)
   register: blackbox_exporter_version_check
   failed_when: False
   changed_when: False
   check_mode: False
-  shell: /usr/bin/blackbox-exporter --version 2>&1
+  ansible.builtin.shell: /usr/bin/blackbox-exporter --version 2>&1
   tags:
     - exporters
     - blackbox
 
 - name: Fact version change (blackbox)
-  set_fact:
+  ansible.builtin.set_fact:
     blackbox_exporter_version_changed: "{{ blackbox_exporter_version_check.rc != 0 or (blackbox_exporter_version_check.stdout_lines is defined and blackbox_exporter_version not in blackbox_exporter_version_check.stdout_lines[0]) | bool }}"
   tags:
     - exporters
@@ -19,7 +18,7 @@
 
 - name: Download release tarball (blackbox)
   when: blackbox_exporter_version_changed
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ blackbox_exporter_download }}"
     dest: /usr/local/src
     remote_src: True
@@ -33,7 +32,7 @@
   when: blackbox_exporter_version_changed and not ansible_check_mode
   notify:
     - Restart blackbox-exporter
-  copy:
+  ansible.builtin.copy:
     src: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}/blackbox_exporter"
     dest: /usr/bin/blackbox-exporter
     remote_src: True
@@ -47,7 +46,7 @@
 - name: Write general config (blackbox)
   notify:
     - Restart blackbox-exporter
-  template:
+  ansible.builtin.template:
     src: blackbox/config.j2
     dest: /etc/blackbox.yml
     owner: root
@@ -60,7 +59,7 @@
 - name: Write default config (blackbox)
   notify:
     - Restart blackbox-exporter
-  template:
+  ansible.builtin.template:
     src: blackbox/default.j2
     dest: /etc/default/blackbox-exporter
     owner: root
@@ -73,7 +72,7 @@
 - name: Write service file (blackbox)
   notify:
     - Restart blackbox-exporter
-  template:
+  ansible.builtin.template:
     src: blackbox/service.j2
     dest: /etc/systemd/system/blackbox-exporter.service
     owner: root
@@ -84,7 +83,7 @@
     - blackbox
 
 - name: Start exporter service (blackbox)
-  systemd:
+  ansible.builtin.systemd:
     name: blackbox-exporter
     state: started
     daemon_reload: True
@@ -95,7 +94,7 @@
     - blackbox
 
 - name: Remove install directory (blackbox)
-  file:
+  ansible.builtin.file:
     path: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}"
     state: absent
   tags:

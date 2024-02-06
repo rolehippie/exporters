@@ -1,13 +1,12 @@
-# Standards: 1.2
 ---
 - name: Restart node-exporter
-  systemd:
+  ansible.builtin.systemd:
     name: node-exporter
     state: restarted
     daemon_reload: yes
 
 - name: Restart blackbox-exporter
-  systemd:
+  ansible.builtin.systemd:
     name: blackbox-exporter
     state: restarted
     daemon_reload: yes
