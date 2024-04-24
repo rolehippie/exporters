@@ -13,7 +13,7 @@ exporters_available_tasks:
 
 # @var node_exporter_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/node_exporter
-node_exporter_version: 1.7.0
+node_exporter_version: 1.8.0
 
 # @var node_exporter_arch:description: Architecture of the release to install
 node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
