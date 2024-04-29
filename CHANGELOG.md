@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/rolehippie/exporters/compare/v2.1.0...v2.2.0) (2024-04-29)
+
+
+### Features
+
+* **deps:** update dependency prometheus/node_exporter to v1.8.0 ([54c3301](https://github.com/rolehippie/exporters/commit/54c3301963df8c173c6e5fbe82bd00db53cabfac))
+
 ## [2.1.0](https://github.com/rolehippie/exporters/compare/v2.0.0...v2.1.0) (2024-04-15)
 
 
