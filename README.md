@@ -216,7 +216,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-node_exporter_version: 1.8.2
+node_exporter_version: 1.9.0
 ```
 
 ## Discovered Tags
