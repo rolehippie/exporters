@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/rolehippie/exporters/compare/v2.3.0...v2.4.0) (2025-03-03)
+
+
+### Features
+
+* **deps:** update dependency prometheus/blackbox_exporter to v0.26.0 ([#39](https://github.com/rolehippie/exporters/issues/39)) ([7fe7821](https://github.com/rolehippie/exporters/commit/7fe7821280e96ccb950d90a4b85d0fca4d2d0cc5))
+
 ## [2.3.0](https://github.com/rolehippie/exporters/compare/v2.2.2...v2.3.0) (2025-02-24)
 
 
