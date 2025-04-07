@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/rolehippie/exporters/compare/v2.4.0...v2.4.1) (2025-04-07)
+
+
+### Bugfixes
+
+* **deps:** update dependency prometheus/node_exporter to v1.9.1 ([#41](https://github.com/rolehippie/exporters/issues/41)) ([62b6382](https://github.com/rolehippie/exporters/commit/62b638213c151dc0f3a382c2d77f9d8d54150f37))
+
 ## [2.4.0](https://github.com/rolehippie/exporters/compare/v2.3.0...v2.4.0) (2025-03-03)
 
 
