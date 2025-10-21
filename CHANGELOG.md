@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/rolehippie/exporters/compare/v2.5.0...v2.6.0) (2025-10-21)
+
+
+### Features
+
+* apply new repo structure and update linting ([dc4cffc](https://github.com/rolehippie/exporters/commit/dc4cffc2e8177135a1a24af3128d6df5f313f9d1))
+
 ## [2.5.0](https://github.com/rolehippie/exporters/compare/v2.4.1...v2.5.0) (2025-07-07)
 
 
