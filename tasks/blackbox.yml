@@ -1,9 +1,9 @@
 ---
 - name: Check existing install (blackbox)
   register: blackbox_exporter_version_check
-  failed_when: False
-  changed_when: False
-  check_mode: False
+  failed_when: false
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: /usr/bin/blackbox-exporter --version 2>&1
   tags:
     - exporters
@@ -17,11 +17,12 @@
     - blackbox
 
 - name: Download release tarball (blackbox)
-  when: blackbox_exporter_version_changed
+  when:
+    - blackbox_exporter_version_changed
   ansible.builtin.unarchive:
     src: "{{ blackbox_exporter_download }}"
     dest: /usr/local/src
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
   tags:
@@ -29,13 +30,15 @@
     - blackbox
 
 - name: Copy exporter binary (blackbox)
-  when: blackbox_exporter_version_changed and not ansible_check_mode
+  when:
+    - blackbox_exporter_version_changed
+    - not ansible_check_mode
   notify:
     - Restart blackbox-exporter
   ansible.builtin.copy:
     src: "/usr/local/src/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}/blackbox_exporter"
     dest: /usr/bin/blackbox-exporter
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
@@ -86,9 +89,9 @@
   ansible.builtin.systemd:
     name: blackbox-exporter
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - exporters
     - blackbox

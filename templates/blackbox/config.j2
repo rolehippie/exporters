@@ -1,2 +1,2 @@
 modules:
-  {{ blackbox_general_modules | combine(blackbox_extra_modules) | to_nice_yaml(indent=2) | indent(width=2, first=False) | trim }}
+  {{ blackbox_general_modules | combine(blackbox_extra_modules) | to_nice_yaml(indent=2) | indent(width=2, first=false) | trim }}

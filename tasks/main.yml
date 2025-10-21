@@ -3,7 +3,8 @@
   loop: "{{ exporters_default_enabled + exporters_extra_enabled }}"
   loop_control:
     loop_var: exporter
-  when: exporter in exporters_available_tasks
+  when:
+    - exporter in exporters_available_tasks
   ansible.builtin.include_tasks: "{{ exporter }}.yml"
   tags: "{{ exporters_available_tasks + ['exporters'] }}"
 

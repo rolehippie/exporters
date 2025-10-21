@@ -1,4 +1,4 @@
-# workspace
+# exporters
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/exporters)
 [![General Workflow](https://github.com/rolehippie/exporters/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/exporters/actions/workflows/general.yml)
@@ -53,8 +53,8 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'
-  }}"
+blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
+  == 'arm64' else 'amd64' }}"
 ```
 
 ### blackbox_exporter_args
@@ -154,8 +154,8 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64'
-  }}"
+node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
+  == 'arm64' else 'amd64' }}"
 ```
 
 ### node_exporter_args
@@ -201,6 +201,28 @@ List of extra collectors to create
 node_exporter_extra_collectors: []
 ```
 
+#### Example usage
+
+```YAML
+node_exporter_extra_collectors:
+  - name: example
+    content: |
+      echo "works"
+    interval: 60
+    boot: 60
+    state: present
+  - name: example-from-url
+    url: http://example.com/script.txt
+    interval: 60
+    boot: 60
+  - name: example-from-template
+    src: path/to/template.j2
+    interval: 60
+    boot: 60
+  - name: remove-old-script
+    state: abbsent
+```
+
 ### node_exporter_general_collectors
 
 List of general collectors to create
@@ -209,6 +231,28 @@ List of general collectors to create
 
 ```YAML
 node_exporter_general_collectors: []
+```
+
+#### Example usage
+
+```YAML
+node_exporter_general_collectors:
+  - name: example
+    content: |
+      echo "works"
+    interval: 60
+    boot: 60
+    state: present
+  - name: example-from-url
+    url: http://example.com/script.txt
+    interval: 60
+    boot: 60
+  - name: example-from-template
+    src: path/to/template.j2
+    interval: 60
+    boot: 60
+  - name: remove-old-script
+    state: abbsent
 ```
 
 ### node_exporter_version

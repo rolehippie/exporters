@@ -1,1 +1,1 @@
-ARGS="--collector.cpu.info --collector.logind --collector.systemd --collector.processes --collector.tcpstat{{ ' ' + node_exporter_args | join(' ') if node_exporter_args | default(False) else '' }}"
+ARGS="--collector.cpu.info --collector.logind --collector.systemd --collector.processes --collector.tcpstat{{ ' ' + node_exporter_args | join(' ') if node_exporter_args | default(false) else '' }}"

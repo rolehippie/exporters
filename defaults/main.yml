@@ -16,7 +16,7 @@ exporters_available_tasks:
 node_exporter_version: 1.9.1
 
 # @var node_exporter_arch:description: Architecture of the release to install
-node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 
 # @var node_exporter_download:description: URL to the archive of the release to install
 node_exporter_download: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
@@ -28,9 +28,47 @@ node_exporter_collector_directory: /var/cache/node-exporter
 node_exporter_args: []
 
 # @var node_exporter_general_collectors:description: List of general collectors to create
+# @var node_exporter_general_collectors:example: >
+# node_exporter_general_collectors:
+#   - name: example
+#     content: |
+#       echo "works"
+#     interval: 60
+#     boot: 60
+#     state: present
+#   - name: example-from-url
+#     url: http://example.com/script.txt
+#     interval: 60
+#     boot: 60
+#   - name: example-from-template
+#     src: path/to/template.j2
+#     interval: 60
+#     boot: 60
+#   - name: remove-old-script
+#     state: abbsent
+# @end
 node_exporter_general_collectors: []
 
 # @var node_exporter_extra_collectors:description: List of extra collectors to create
+# @var node_exporter_extra_collectors:example: >
+# node_exporter_extra_collectors:
+#   - name: example
+#     content: |
+#       echo "works"
+#     interval: 60
+#     boot: 60
+#     state: present
+#   - name: example-from-url
+#     url: http://example.com/script.txt
+#     interval: 60
+#     boot: 60
+#   - name: example-from-template
+#     src: path/to/template.j2
+#     interval: 60
+#     boot: 60
+#   - name: remove-old-script
+#     state: abbsent
+# @end
 node_exporter_extra_collectors: []
 
 # @var blackbox_exporter_version:description: Version of the release to install
@@ -38,7 +76,7 @@ node_exporter_extra_collectors: []
 blackbox_exporter_version: 0.27.0
 
 # @var blackbox_exporter_arch:description: Architecture of the release to install
-blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 
 # @var blackbox_exporter_download:description: URL to the archive of the release to install
 blackbox_exporter_download: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}.tar.gz"

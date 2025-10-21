@@ -3,12 +3,12 @@
   ansible.builtin.systemd:
     name: node-exporter
     state: restarted
-    daemon_reload: yes
+    daemon_reload: true
 
 - name: Restart blackbox-exporter
   ansible.builtin.systemd:
     name: blackbox-exporter
     state: restarted
-    daemon_reload: yes
+    daemon_reload: true
 
 ...

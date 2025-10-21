@@ -1,9 +1,9 @@
 ---
 - name: Check existing install (node)
   register: node_exporter_version_check
-  failed_when: False
-  changed_when: False
-  check_mode: False
+  failed_when: false
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: /usr/bin/node-exporter --version 2>&1
   tags:
     - exporters
@@ -17,11 +17,12 @@
     - node
 
 - name: Download release tarball (node)
-  when: node_exporter_version_changed
+  when:
+    - node_exporter_version_changed
   ansible.builtin.unarchive:
     src: "{{ node_exporter_download }}"
     dest: /usr/local/src
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
   tags:
@@ -43,7 +44,9 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.url | default(False) and item.state | default("present") == "present"
+  when:
+    - false if item.url is not defined else (item.url | length > 0)
+    - true if item.state is not defined else item.state == "present"
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "/usr/bin/node-exporter-{{ item.name }}"
@@ -58,7 +61,9 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.content | default(False) and item.state | default("present") == "present"
+  when:
+    - false if item.content is not defined else (item.content | length > 0)
+    - true if item.state is not defined else item.state == "present"
   ansible.builtin.copy:
     content: "{{ item.content }}"
     dest: "/usr/bin/node-exporter-{{ item.name }}"
@@ -73,7 +78,9 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.src | default(False) and item.state | default("present") == "present"
+  when:
+    - false if item.src is not defined else (item.src | length > 0)
+    - true if item.state is not defined else item.state == "present"
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "/usr/bin/node-exporter-{{ item.name }}"
@@ -88,7 +95,8 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "present"
+  when:
+    - true if item.state is not defined else item.state == "present"
   ansible.builtin.template:
     src: collector/timer.j2
     dest: "/etc/systemd/system/node-exporter-{{ item.name }}.timer"
@@ -103,7 +111,8 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "present"
+  when:
+    - true if item.state is not defined else item.state == "present"
   ansible.builtin.template:
     src: collector/service.j2
     dest: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
@@ -114,17 +123,49 @@
     - exporters
     - node
 
-- name: Start collector timer (node)
+- name: Check collector timer (node)
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  ignore_errors: "{{ False if item.state | default('present') else True }}"
+  register: node_exporter_collector_timer_check
+  ansible.builtin.stat:
+    path: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
+  tags:
+    - exporters
+    - node
+
+- name: Start collector timer (node)
+  loop: "{{ node_exporter_collector_timer_check.results }}"
+  loop_control:
+    label: "{{ item.item.name }}"
+  when:
+    - true if item.item.state is not defined else item.item.state == "present"
+    - item.stat.exists
+  register: node_exporter_collector_timer_start
   ansible.builtin.systemd:
-    name: "node-exporter-{{ item.name }}.timer"
-    state: "{{ 'started' if item.state | default('present') else 'stopped' }}"
-    daemon_reload: True
-    masked: False
-    enabled: "{{ True if item.state | default('present') else False }}"
+    name: "node-exporter-{{ item.item.name }}.timer"
+    state: started
+    daemon_reload: true
+    masked: false
+    enabled: true
+  tags:
+    - exporters
+    - node
+
+- name: Stop collector timer (node)
+  loop: "{{ node_exporter_collector_timer_check.results }}"
+  loop_control:
+    label: "{{ item.item.name }}"
+  when:
+    - false if item.item.state is not defined else item.item.state == "absent"
+    - not item.stat.exists
+  register: node_exporter_collector_timer_stop
+  ansible.builtin.systemd:
+    name: "node-exporter-{{ item.item.name }}.timer"
+    state: stopped
+    daemon_reload: true
+    masked: false
+    enabled: false
   tags:
     - exporters
     - node
@@ -133,7 +174,8 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "absent"
+  when:
+    - false if item.state is not defined else item.state == "absent"
   ansible.builtin.file:
     path: "/etc/systemd/system/node-exporter-{{ item.name }}.timer"
     state: absent
@@ -145,7 +187,8 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "absent"
+  when:
+    - false if item.state is not defined else item.state == "absent"
   ansible.builtin.file:
     path: "/etc/systemd/system/node-exporter-{{ item.name }}.service"
     state: absent
@@ -157,7 +200,8 @@
   loop: "{{ node_exporter_general_collectors + node_exporter_extra_collectors }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "absent"
+  when:
+    - false if item.state is not defined else item.state == "absent"
   ansible.builtin.file:
     path: "/usr/bin/node-exporter-{{ item.name }}"
     state: absent
@@ -166,13 +210,15 @@
     - node
 
 - name: Copy exporter binary (node)
-  when: node_exporter_version_changed and not ansible_check_mode
+  when:
+    - node_exporter_version_changed
+    - not ansible_check_mode
   notify:
     - Restart node-exporter
   ansible.builtin.copy:
     src: "/usr/local/src/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}/node_exporter"
     dest: /usr/bin/node-exporter
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
@@ -210,9 +256,9 @@
   ansible.builtin.systemd:
     name: node-exporter
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - exporters
     - node
