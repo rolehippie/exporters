@@ -73,7 +73,7 @@ node_exporter_extra_collectors: []
 
 # @var blackbox_exporter_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/blackbox_exporter
-blackbox_exporter_version: 0.27.0
+blackbox_exporter_version: 0.28.0
 
 # @var blackbox_exporter_arch:description: Architecture of the release to install
 blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
