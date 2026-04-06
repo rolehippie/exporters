@@ -1,5 +1,31 @@
 # Changelog
 
+## [2.9.0](https://github.com/rolehippie/exporters/compare/v2.8.0...v2.9.0) (2026-04-06)
+
+### Dependencies
+
+* **minor:** update dependency prometheus/node_exporter to v1.11.0 ([#70](https://github.com/rolehippie/exporters/issues/70)) ([aa77764](https://github.com/rolehippie/exporters/commit/aa77764939b6c7cbf211db6338b0ff4bb074ed38))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([db6f2c2](https://github.com/rolehippie/exporters/commit/db6f2c2ebf5ddd85ce53355e3f001051c7d55abd))
+* **flake:** updated lockfile [skip ci] ([b8a7a29](https://github.com/rolehippie/exporters/commit/b8a7a29adba768bf57a70d50ddf14539a058dfbc))
+* **flake:** updated lockfile [skip ci] ([ca7c00c](https://github.com/rolehippie/exporters/commit/ca7c00c102e1919f5f457b69d9b6cc1ebd5581e4))
+* **flake:** updated lockfile [skip ci] ([0fea435](https://github.com/rolehippie/exporters/commit/0fea4356a6ae2fe8aeb214929df6ec2f791d97f9))
+* **flake:** updated lockfile [skip ci] ([aaa2475](https://github.com/rolehippie/exporters/commit/aaa2475d4870fa7e611361ab6aff4977ac55c910))
+* **flake:** updated lockfile [skip ci] ([241f100](https://github.com/rolehippie/exporters/commit/241f100e648af2813a94c2725e678f12cf465994))
+* **flake:** updated lockfile [skip ci] ([04b8e1b](https://github.com/rolehippie/exporters/commit/04b8e1b52f1ecb95224e756d66120cbaea1f96f6))
+* **flake:** updated lockfile [skip ci] ([8472160](https://github.com/rolehippie/exporters/commit/84721601a42e17ab7e456e2062c6d07e393fff1e))
+* **flake:** updated lockfile [skip ci] ([2bf8a5a](https://github.com/rolehippie/exporters/commit/2bf8a5a79035470725201337b11fda956aac9dff))
+* **flake:** updated lockfile [skip ci] ([593be2a](https://github.com/rolehippie/exporters/commit/593be2a5710c9c00cc24af35f591d18e735dfd37))
+* **flake:** updated lockfile [skip ci] ([f92ad7b](https://github.com/rolehippie/exporters/commit/f92ad7b5805bdee309f228fff9da34a0d764d63c))
+* **flake:** updated lockfile [skip ci] ([bd9af68](https://github.com/rolehippie/exporters/commit/bd9af684d7ac90ef87ff2a5afb60e558db8c8175))
+* **flake:** updated lockfile [skip ci] ([941c724](https://github.com/rolehippie/exporters/commit/941c7242f5a14da1d53149e6d01eaceb531ed847))
+* **flake:** updated lockfile [skip ci] ([e79748e](https://github.com/rolehippie/exporters/commit/e79748e82a9be7e3b9c89f086476e392eaeb1dde))
+* **flake:** updated lockfile [skip ci] ([63e654e](https://github.com/rolehippie/exporters/commit/63e654e8850afc2ff26b513413c05283a9dda573))
+* **flake:** updated lockfile [skip ci] ([257c827](https://github.com/rolehippie/exporters/commit/257c8276d8b6c0a8fc2ed4f88efb8d48ba4569d3))
+* **flake:** updated lockfile [skip ci] ([3e84b52](https://github.com/rolehippie/exporters/commit/3e84b524747132852d9f222d30b9b2f21f4d9b1b))
+
 ## [2.8.0](https://github.com/rolehippie/exporters/compare/v2.7.0...v2.8.0) (2025-12-08)
 
 
