@@ -53,8 +53,7 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
-  == 'arm64' else 'amd64' }}"
+blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 ```
 
 ### blackbox_exporter_args
@@ -74,10 +73,7 @@ URL to the archive of the release to install
 #### Default value
 
 ```YAML
-blackbox_exporter_download: 
-  https://github.com/prometheus/blackbox_exporter/releases/download/v{{ 
-  blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version 
-  }}.linux-{{ blackbox_exporter_arch }}.tar.gz
+blackbox_exporter_download: https://github.com/prometheus/blackbox_exporter/releases/download/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}.tar.gz
 ```
 
 ### blackbox_exporter_version
@@ -154,8 +150,7 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
-  == 'arm64' else 'amd64' }}"
+node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 ```
 
 ### node_exporter_args
@@ -185,10 +180,7 @@ URL to the archive of the release to install
 #### Default value
 
 ```YAML
-node_exporter_download: 
-  https://github.com/prometheus/node_exporter/releases/download/v{{ 
-  node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ 
-  node_exporter_arch }}.tar.gz
+node_exporter_download: https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz
 ```
 
 ### node_exporter_extra_collectors
@@ -262,7 +254,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-node_exporter_version: 1.11.0
+node_exporter_version: 1.11.1
 ```
 
 ## Discovered Tags
