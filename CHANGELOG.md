@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.9.1](https://github.com/rolehippie/exporters/compare/v2.9.0...v2.9.1) (2026-04-13)
+
+### Dependencies
+
+* **patch:** update dependency prometheus/node_exporter to v1.11.1 ([#71](https://github.com/rolehippie/exporters/issues/71)) ([b142576](https://github.com/rolehippie/exporters/commit/b142576a15f15830f894abb36c9da7a74c32f989))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([ea5dd41](https://github.com/rolehippie/exporters/commit/ea5dd4143773d9a5b44261261ee2be19c60e7374))
+
 ## [2.9.0](https://github.com/rolehippie/exporters/compare/v2.8.0...v2.9.0) (2026-04-06)
 
 ### Dependencies
