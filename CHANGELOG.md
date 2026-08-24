@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.14.0](https://github.com/rolehippie/exporters/compare/v2.13.0...v2.14.0) (2026-08-24)
+
+### Dependencies
+
+* **minor:** update dependency pipx:molecule to v26.8.0 ([#84](https://github.com/rolehippie/exporters/issues/84)) ([a1acdeb](https://github.com/rolehippie/exporters/commit/a1acdeb389fc96c533f7bc579d78efa66f903dd2))
+
 ## [2.13.0](https://github.com/rolehippie/exporters/compare/v2.12.0...v2.13.0) (2026-08-17)
 
 ### Dependencies
