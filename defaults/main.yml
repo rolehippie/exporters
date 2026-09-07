@@ -16,7 +16,7 @@ exporters_available_tasks:
 node_exporter_version: 1.12.1
 
 # @var node_exporter_arch:description: Architecture of the release to install
-node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
+node_exporter_arch: "{{ 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'amd64' }}"
 
 # @var node_exporter_download:description: URL to the archive of the release to install
 node_exporter_download: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_arch }}.tar.gz"
@@ -76,7 +76,7 @@ node_exporter_extra_collectors: []
 blackbox_exporter_version: 0.28.0
 
 # @var blackbox_exporter_arch:description: Architecture of the release to install
-blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
+blackbox_exporter_arch: "{{ 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'amd64' }}"
 
 # @var blackbox_exporter_download:description: URL to the archive of the release to install
 blackbox_exporter_download: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ blackbox_exporter_arch }}.tar.gz"

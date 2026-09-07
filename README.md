@@ -53,7 +53,7 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-blackbox_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
+blackbox_exporter_arch: "{{ 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'amd64' }}"
 ```
 
 ### blackbox_exporter_args
@@ -150,7 +150,7 @@ Architecture of the release to install
 #### Default value
 
 ```YAML
-node_exporter_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
+node_exporter_arch: "{{ 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'amd64' }}"
 ```
 
 ### node_exporter_args
