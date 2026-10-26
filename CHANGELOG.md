@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.16.1](https://github.com/rolehippie/exporters/compare/v2.16.0...v2.16.1) (2026-10-26)
+
+### Dependencies
+
+* **mise:** update dependency pipx:ansible-lint to v26.10.1 ([#99](https://github.com/rolehippie/exporters/issues/99)) ([fafce0d](https://github.com/rolehippie/exporters/commit/fafce0da2d3080866ebb7d0ee3342a86d19deba3))
+* **mise:** update dependency prek to v0.5.6 ([#100](https://github.com/rolehippie/exporters/issues/100)) ([e0d35bb](https://github.com/rolehippie/exporters/commit/e0d35bbfe7639d6602b8b6168ceba1f8569f8c9b))
+* **mise:** update dependency prek to v0.5.7 ([#101](https://github.com/rolehippie/exporters/issues/101)) ([bc205a1](https://github.com/rolehippie/exporters/commit/bc205a12ab06aba80ab5b32da4cdae6001b2c7a5))
+* **patch:** update dependency prometheus/blackbox_exporter to v0.29.1 ([#102](https://github.com/rolehippie/exporters/issues/102)) ([bceef9b](https://github.com/rolehippie/exporters/commit/bceef9b3967437c43bd59cedfe0583bb22d56fa3))
+
 ## [2.16.0](https://github.com/rolehippie/exporters/compare/v2.15.0...v2.16.0) (2026-10-12)
 
 ### Dependencies
