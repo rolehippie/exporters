@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.17.0](https://github.com/rolehippie/exporters/compare/v2.16.1...v2.17.0) (2026-11-23)
+
+* automated readme update [skip ci] ([c6d2772](https://github.com/rolehippie/exporters/commit/c6d277260de5b4d2566a305424adc4a789c300fa))
+* automated readme update [skip ci] ([b371908](https://github.com/rolehippie/exporters/commit/b371908a96e648f9ad9a624270994c794230339d))
+* automated release update [skip ci] ([c5e4eee](https://github.com/rolehippie/exporters/commit/c5e4eee622e2f20a0a9828cf40f60c453e5285c9))
+* automated release update [skip ci] ([37f73ee](https://github.com/rolehippie/exporters/commit/37f73eea2b79e6a9bd91f53557b5878493483a63))
+* automated release update [skip ci] ([56dba53](https://github.com/rolehippie/exporters/commit/56dba5366caec748cf2c94123748cfcbe495c805))
+
+### Dependencies
+
+* **minor:** update dependency prometheus/node_exporter to v1.13.0 ([#111](https://github.com/rolehippie/exporters/issues/111)) ([a98327d](https://github.com/rolehippie/exporters/commit/a98327d7bf292cfcfad57aaae734ef4ac99333f8))
+* **mise:** update dependency pipx:ansible-core to v2.22.0 ([#105](https://github.com/rolehippie/exporters/issues/105)) ([63308b9](https://github.com/rolehippie/exporters/commit/63308b9469c91369143e1098f814afe26df5669f))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.4 ([#109](https://github.com/rolehippie/exporters/issues/109)) ([eb76f16](https://github.com/rolehippie/exporters/commit/eb76f16fb5505fd313e91d2af0d5e4e2323f2257))
+* **mise:** update dependency pipx:ansible-lint to v26.11.0 ([#107](https://github.com/rolehippie/exporters/issues/107)) ([de80a29](https://github.com/rolehippie/exporters/commit/de80a291d755af2fd2283bb1297288af396d5761))
+* **mise:** update dependency pipx:molecule to v26.11.0 ([#108](https://github.com/rolehippie/exporters/issues/108)) ([30db8d3](https://github.com/rolehippie/exporters/commit/30db8d3a55fa1e5e87adcaf8782c29f536f82e55))
+* **mise:** update dependency prek to v0.5.10 ([#106](https://github.com/rolehippie/exporters/issues/106)) ([6f748ad](https://github.com/rolehippie/exporters/commit/6f748ada11d7d429e70513a59aaf18e2686629e7))
+* **mise:** update dependency prek to v0.5.11 ([#110](https://github.com/rolehippie/exporters/issues/110)) ([a9ac716](https://github.com/rolehippie/exporters/commit/a9ac7169ea1e84215d01a6d342fefbb7e42b09dc))
+* **mise:** update dependency prek to v0.5.9 ([#104](https://github.com/rolehippie/exporters/issues/104)) ([86d3c53](https://github.com/rolehippie/exporters/commit/86d3c53888fd297fb0b390b16a4c28128d5f073a))
+* **mise:** update node.js to v26 ([#103](https://github.com/rolehippie/exporters/issues/103)) ([86b01e0](https://github.com/rolehippie/exporters/commit/86b01e0893aaf687fda7c0490bb2ce3e4e11994d))
+* **patch:** update dependency prometheus/node_exporter to v1.13.1 ([#112](https://github.com/rolehippie/exporters/issues/112)) ([dda5462](https://github.com/rolehippie/exporters/commit/dda546237ae3c344964e4ed94fc4bb44c60907ff))
+
 ## [2.16.1](https://github.com/rolehippie/exporters/compare/v2.16.0...v2.16.1) (2026-10-26)
 
 ### Dependencies
